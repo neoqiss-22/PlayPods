@@ -1,0 +1,15 @@
+// Minimal Gradle file for the FeedView android module
+// Add plugin and android block when you convert this into a real Android library module.
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 33
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 33
+    }
+}
+
+dependencies {
+    // implementation 'com.google.android.exoplayer:exoplayer:2.18.1'
+}

@@ -8,4 +8,6 @@ target 'PlayPods' do
   # pod 'AFNetworking', '~> 4.0'
 
   # use_frameworks! # enable if your project requires frameworks
+  # Local native module: FeedView
+  pod 'FeedView', :path => '../native-modules/FeedView'
 end

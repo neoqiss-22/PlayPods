@@ -1,0 +1,5 @@
+// Include native modules (FeedView) as a library project.
+// This file is a placeholder for including local module projects.
+// The FeedView module lives at ../native-modules/FeedView/android relative to this file.
+include ':native-modules:FeedView'
+project(':native-modules:FeedView').projectDir = new File(rootProject.projectDir, '../native-modules/FeedView/android')
