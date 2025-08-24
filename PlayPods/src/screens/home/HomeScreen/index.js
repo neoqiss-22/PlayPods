@@ -1,13 +1,30 @@
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { View, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
+import HomeHeader from './components/HomeHeader';
+import ShortsSection from './components/ShortsSection';
+import ContentFilters from './components/ContentFilters';
+import VideoFeed from './components/VideoFeed';
+import BottomNavigation from '../../components/common/BottomNavigation';
 
 const HomeScreen = () => {
+  const [selectedFilter, setSelectedFilter] = useState('All');
+
+  const handleFilterChange = (filter) => {
+    setSelectedFilter(filter);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>PlayPods</Text>
-        <Text style={styles.subtitle}>Welcome to the future of video!</Text>
-      </View>
+      <HomeHeader />
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        <ShortsSection />
+        <ContentFilters 
+          selectedFilter={selectedFilter}
+          onFilterChange={handleFilterChange}
+        />
+        <VideoFeed selectedFilter={selectedFilter} />
+      </ScrollView>
+      <BottomNavigation activeTab="home" />
     </SafeAreaView>
   );
 };
@@ -15,22 +32,10 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#121212',
   },
   content: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    marginBottom: 16,
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#CCCCCC',
   },
 });
 
