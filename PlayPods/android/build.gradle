@@ -1,0 +1,23 @@
+// Placeholder root build.gradle for PlayPods (Android)
+// Replace with a real Gradle project when you initialize Android native app
+
+// Example minimal content (informational only):
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // classpath 'com.android.tools.build:gradle:7.0.0'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
+}
+
+// To initialize a real Android project, run a tool like React Native or Android Studio and replace these files.

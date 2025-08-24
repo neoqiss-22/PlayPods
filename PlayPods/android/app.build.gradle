@@ -1,0 +1,19 @@
+// Placeholder module-level Gradle file for PlayPods Android app
+// Rename to `app/build.gradle` once you create the Android module.
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 33
+    defaultConfig {
+        applicationId "com.playpods"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 1
+        versionName "0.1.0"
+    }
+}
+
+dependencies {
+    // implementation fileTree(dir: "libs", include: ["*.jar"])
+}
