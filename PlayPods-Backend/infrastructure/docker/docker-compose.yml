@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # Databases
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: playpods
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init-scripts:/docker-entrypoint-initdb.d
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # Services
+  api-gateway:
+    build: ../../services/api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - auth-service
+      - video-service
+      - upload-service
+
+  auth-service:
+    build: ../../services/auth-service
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/playpods
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+
+  video-service:
+    build: ../../services/video-service
+    ports:
+      - "3002:3002"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/playpods
+    depends_on:
+      - postgres
+
+  upload-service:
+    build: ../../services/upload-service
+    ports:
+      - "3003:3003"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/playpods
+    depends_on:
+      - postgres
+
+  recommendation-service:
+    build: ../../services/recommendation-service
+    ports:
+      - "3006:3006"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/playpods
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  postgres_data:
+  redis_data:

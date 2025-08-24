@@ -10,8 +10,8 @@ mkdir -p PlayPods
 cd PlayPods
 
 echo "📱 Initializing React Native project..."
-npx react-native init PlayPodsApp --version latest
-cd PlayPodsApp
+npx react-native init PlayPods --version latest
+cd PlayPods
 
 echo "📁 Creating source directory structure..."
 

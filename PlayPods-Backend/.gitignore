@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+target/
+__pycache__/
+venv/
+.env
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+.docker/
+
+# Secrets
+secrets/
+*.pem
+*.key
+!shared/security/certificates/.gitkeep
+
+# Build artifacts
+dist/
+build/
+*.exe
+*.dll
+
+# Python
+*.pyc
+*.pyo
+*.egg-info/
+
+# Rust
+Cargo.lock
+
+# Node.js
+package-lock.json
