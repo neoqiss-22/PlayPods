@@ -36,4 +36,12 @@ FeedView.pauseAll = function(ref) {
 	UIManager.dispatchViewManagerCommand(node, config.Commands.pauseAll, []);
 };
 
+FeedView.setItemsJson = function(ref, json) {
+	const node = findNodeHandle(ref && ref.current ? ref.current : ref);
+	if (!node) return;
+	const config = UIManager.getViewManagerConfig('FeedView');
+	if (!config || !config.Commands || config.Commands.setItemsJson == null) return;
+	UIManager.dispatchViewManagerCommand(node, config.Commands.setItemsJson, [json]);
+};
+
 export default FeedView;
