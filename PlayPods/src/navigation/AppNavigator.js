@@ -2,22 +2,23 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TabNavigator from './TabNavigator';
-import AuthNavigator from './AuthNavigator';
-import { useAuth } from '../hooks/useAuth';
+import VideoPlayerScreen from '../screens/video/VideoPlayerScreen';
+import ChannelHomeScreen from '../screens/channels/ChannelHomeScreen';
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const { isAuthenticated } = useAuth();
-
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {isAuthenticated ? (
-          <Stack.Screen name="Main" component={TabNavigator} />
-        ) : (
-          <Stack.Screen name="Auth" component={AuthNavigator} />
-        )}
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          cardStyle: { backgroundColor: '#000000' },
+        }}
+      >
+        <Stack.Screen name="MainTabs" component={TabNavigator} />
+        <Stack.Screen name="VideoPlayer" component={VideoPlayerScreen} />
+        <Stack.Screen name="ChannelHome" component={ChannelHomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
